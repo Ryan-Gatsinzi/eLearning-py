@@ -1,0 +1,91 @@
+{% load static %}
+<div class="left-sidebar-pro">
+    <nav id="sidebar" class="">
+        <div class="sidebar-header">
+            <a href="/student_dashboard/"><img class="main-logo" src="{% static 'img/logo/logo.png' %}" alt="img" width = '200px' height='10px'/></a>
+            <strong><a href="#"><img src="{% static 'img/logo/logo.png' %}" alt="" /></a></strong>
+        </div>
+        <div class="left-custom-menu-adp-wrap comment-scrollbar">
+            <nav class="sidebar-nav left-sidebar-menu-pro">
+                <ul class="metismenu" id="menu1">
+                    <li>
+                            <a title="All Students" href="/student_dashboard/student_all-students/"><span class="mini-sub-pro">All Students</span></a>
+                    </li>
+                    <li>
+                            <a title="All Courses" href="/student_dashboard/student_all-courses/"><span class="mini-sub-pro">All subjects</span></a>
+                    </li>                        
+                    <li>
+
+                        <a href="/student_dashboard/student_all-topics/" aria-expanded="false"><span class="mini-sub-pro"></span> <span class="mini-click-non">All Topics</span></a>
+
+                    </li>
+                    <li>
+                            <li><a title="class List" href="/student_dashboard/student_class/"><span class="mini-sub-pro">Class List</span></a></li>
+                    </li>                   
+                    <li>
+                        <a class="has-arrow"  aria-expanded="false"><span class="mini-click-non">Library</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Library" href="/student_dashboard/student_library/"><span class="mini-sub-pro">Library</span></a></li>
+                            <li><a title="Add book" href="/student_dashboard/student_add-book/"><span class="mini-sub-pro">Add book</span></a></li>                                                                                          
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </nav>
+</div>
+
+
+
+
+<!--  Mobile menu   -->
+
+
+
+
+<div class="mobile-menu-area">        
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="mobile-menu">
+                            <nav id="dropdown">
+                                <ul class="mobile-menu-nav">
+                                <li class="nav-item"><a href="/student_dashboard" class="nav-link">Home</a>
+                                            </li>
+                                <li>                                        
+                            <a title="All Students" href="/student_dashboard/student_all-students/"><span class="mini-sub-pro">All Students</span></a>
+                    </li>
+                    <li>
+                            <a title="All Courses" href="/student_dashboard/student_all-courses/"><span class="mini-sub-pro">All subjects</span></a>
+                    </li>                        
+
+                    <li>
+                            <li><a title="class List" href="/student_dashboard/student_class/"><span class="mini-sub-pro">Class List</span></a></li>
+                    </li>        
+                    <li>
+
+                        <a href="/student_dashboard/student_all-topics/" aria-expanded="false"><span class="mini-sub-pro"></span> <span class="mini-click-non">All Topics</span></a>
+
+                    </li>                                                                                   
+                    <li class="nav-item"><a href="/student_dashboard/student_latest_results/" class="nav-link">My results</a>
+                    </li>
+                    <li class="nav-item"><a href="/student_dashboard/quiz" class="nav-link">Quiz</a>
+                    </li>           
+                    
+                    <li>
+                        <a class="has-arrow"  aria-expanded="false"><span class="mini-click-non">Library</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Library" href="/student_dashboard/student_library/"><span class="mini-sub-pro">Library</span></a></li>
+                            <li><a title="Add book" href="/student_dashboard/student_add-book/"><span class="mini-sub-pro">Add book</span></a></li>                                                                                          
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="/student_dashboard/people" class="nav-link">Chat</a>
+                    </li> 
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

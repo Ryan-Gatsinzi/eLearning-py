@@ -1,0 +1,381 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 10px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>All Students</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}'>
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/owl.carousel.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.theme.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.transitions.css" %}'>
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/animate.css" %}'>
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/normalize.css" %}'>
+    <!-- meanmenu icon CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/meanmenu.min.css" %}'>
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/main.css" %}'>
+    <!-- educate icon CSS
+		============================================ -->
+    <!-- <link rel="stylesheet" href='{% static "css/educate-custon-icon.css" %}'> -->
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/morrisjs/morris.css" %}'>
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/scrollbar/jquery.mCustomScrollbar.min.css" %}'>
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/metisMenu/metisMenu.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/metisMenu/metisMenu-vertical.css" %}'>
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/calendar/fullcalendar.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/calendar/fullcalendar.print.min.css" %}'>
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/responsive.css" %}'>
+    <!-- modernizr JS
+		============================================ -->
+    <script src='{% static "js/vendor/modernizr-2.8.3.min.js" %}'></script>
+</head>
+
+
+<body>
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+    <!-- Start Left menu area -->
+    {% include "./admin_header.html" %}
+    <!-- End Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+      {% include "./admin_nav.html" %}
+        <div class="product-status mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-status-wrap drp-lst">
+                          {% for msg in messages %}
+                          <div style="color:red;font-size:larger;">{{msg}}</div>                                
+                          {% endfor %}
+                            <h4>Class list</h4>
+                            <table>
+                              <tr>                                
+                              <th>Name of Class</th>
+                              <th>Homeroom Teacher</th>
+                              <th>Class value</th>
+                              <th>status</th>
+                              <th>Action</th> 
+                            </tr>
+                                                                                                     
+                                    {% for cls in rows %}                                                                                                                                                
+                                    <tr>     
+                                                                         
+                                        <td style="width: 10px;">{{ cls.name_class}}</td>
+                                        <td style="width: 10px;">{% for user in users %}
+                                                                  {% if user.id == cls.homeroom_tr %}
+                                                                  {{user.name}}
+                                                                  {% endif %}
+                                                                  {% endfor %}
+                                        </td>
+                                        <td style="width: 10px;">{{ cls.class_val }}</td>
+                                        <td style="width: 10px;">{{ cls.status }}</td>
+                                        <td style="width: 10px;">                                                                           
+                                          {% if cls.status == 'activated' %}
+                                          <a href ="deactivate_class/{{cls.id}}"><img src=" {% static 'img/deactivate.png' %} " alt="deactivate" style='width:20px; height:20px; cursor:pointer' title='deactivate'></a>
+                                          <a href ="go_to_edit/{{cls.id}}/class"><img src=" {% static 'img/edit.png' %} " alt="edit" style='width:20px; height:20px; cursor:pointer' title='Edit'></a>
+                                          <a href ="delete_class/{{cls.id}}"><img src=" {% static 'img/delete.png' %} " alt="delete" style='width:20px; height:20px; cursor:pointer' title='delete'></a>
+                                          <a href ="students_class/{{cls.id}}"><img src=" {% static 'img/students.png' %} " alt="delete" style='width:20px; height:20px; cursor:pointer' title='students'></a>                                                                                  
+                                          {% else %}                                        
+                                          <a href ="activate_class/{{cls.id}}"><img src=" {% static 'img/activate.png' %} " alt="activate" style='width:20px; height:20px; cursor:pointer' title='activate'></a>
+                                          <a href ="go_to_edit/{{cls.id}}/class"><img src=" {% static 'img/edit.png' %} " alt="edit" style='width:20px; height:20px; cursor:pointer' title='Edit'></a>
+                                          <a href ="delete_class/{{cls.id}}"><img src=" {% static 'img/delete.png' %} " alt="delete" style='width:20px; height:20px; cursor:pointer' title='delete'></a>                                        
+                                        </td>
+                                      </tr>
+                                    {% endif %} 
+                                    {% endfor %}
+                                    <!-- <tr>
+                                        <th>No</th>
+                                        <th>Name of Class</th>
+                                        <th>Number of students in class</th>
+                                        <th>Homeroom Teacher</th>
+                                        <th>Class value</th>
+                                        <th>status</th>
+                                        <th>Action</th>                                        
+                                    </tr>
+                                    <?php
+                                    $counter = 0;                                                                        
+                                              $sql2 = $conn->query("SELECT * FROM users WHERE role = 'teacher' AND status ='activated' ");
+                                              if($sql2):
+                                                while($row2 = $sql2->fetch_assoc()):
+                                                  $sql4 = $conn->query("SELECT * FROM department WHERE homeroom_tr = $row2[id] AND status ='activated' ");
+                                                  if($sql4->num_rows > 0):
+                                                    while($row = $sql4->fetch_assoc()):
+                                                    $counter++; ?>
+                                                  <tr>
+                                                      <td style="width: 10px;"><?php echo $counter; ?></td>
+                                                      <td style="width: 50px;"><?php echo $row['name_class']; ?></td>
+                                                      <td style="width: 50px;"><?php
+                                                      $sql3 = $conn->query("SELECT * from enroll_student where status = 'activated' and class_id = $row[id]");
+                                                      if($sql3->num_rows > 0){
+                                                        echo $sql3->num_rows;
+                                                      }else{
+                                                        echo 0;
+                                                      }
+                                                      ?></td>
+                                                      <td style="width: 50px;"><?php echo $row2['name']; ?></td>
+                                                      <td style="width: 50px;"><?php echo $row['class_val']; ?></td>
+                                                      <td style="width: 50px;"><?php echo $row['status']; ?></td>  
+                                                      <td style="width: 50px;">
+                                                      <a class="btn brand z-depth-0" href="departments.php?action=delete&id=<?php echo $row['id']; ?>" style='color:red'><img src="../img/delete.png" alt="delete" style='width:20px;height:20px' title='delete'></a>
+
+                                                      <?php if ($row['status'] == 'activated') : ?>
+                                                          <a class="btn brand z-depth-0" href="departments.php?action=deactivate&id=<?php echo $row['id']; ?>" style='color:red'><img src="../img/deactivate.png" alt="deactivate" style='width:20px;height:20px' title='deactivate'></a>
+                                                          <a class="btn brand z-depth-0" href="edit.php?action=edit&id=<?php echo $row['id']; ?>"><img src="../img/edit.png" alt="edit" style='width:20px;height:20px' title='edit'></a>
+                                                          <a class="btn brand z-depth-0" href="view_students.php?action=view_students&class_id=<?php echo $row['id']; ?>"><img src="../img/students.png" alt="edit" style='width:20px;height:20px' title='view students'></a>
+                                                      <?php endif; ?>
+                                                      <?php if ($row['status'] == 'deactivated') : ?>
+                                                          <a class="btn brand z-depth-0" href="departments.php?action=activate&id=<?php echo $row['id']; ?>" style='color:green'><img src="../img/activate.png" alt="activate" style='width:20px;height:20px' title='activate'></a>
+
+                                                      <?php endif; ?>
+
+
+                                                  </td>                                              
+                                                  </tr>  
+                                                  <?php endwhile; ?>                                                
+                                                <?php endif; ?>
+                                                <?php endwhile; ?>
+                                              <?php endif; ?> -->
+
+                          </table>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="modal-bootstrap modal-login-form">
+                                    <a class="zoomInDown mg-t" href="#" data-toggle="modal" data-target="#zoomInDown1">Add class</a>
+                                </div>
+                                <div id="zoomInDown1" class="modal modal-edu-general modal-zoomInDown fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-close-area modal-close-df">
+                                                <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="modal-login-form-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="basic-login-inner modal-basic-inner">
+                                                                <h3>Add class</h3>
+                                                                
+                                                                <form action="admin_department" method="post">
+                                                                  {% csrf_token %}
+                                                                    <div class="form-group-inner">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="class">class name:</label>
+                                                                                    <input name="class" type="text" class="form-control" placeholder="class">
+                                                                                    <label for="class">class value:</label>
+                                                                                    <input name="classval" type="number" class="form-control" placeholder="class value">
+                                                                                    <label for="h_tr">Homeroom TR:</label>
+                                                                                    <select name="homeroom_tr" class="form-control">
+                                                                                        <option selected disabled value="0">Select teacher</option>
+                                                                                        {% for user in users %} 
+                                                                                        {% if user.status != 'pending' %}                                                                                     
+                                                                                        <option name="homeroom_tr" value="{{user.id}}"> {{user.name}} </option> 
+                                                                                        {% endif %}
+                                                                                        {% endfor %}                                                                                                                                                                            
+                                                                                    </select>
+                                                                                    <button type="submit" name="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="login-btn-inner">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+                                                                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                      </div>
+                                                                </form>                                                                
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer-copy-right">
+                            <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- jquery
+		============================================ -->
+    <script src='{% static "js/vendor/jquery-1.12.4.min.js" %}'></script>
+    <!-- bootstrap JS
+============================================ -->
+    <script src='{% static "js/bootstrap.min.js" %}'></script>
+    <!-- wow JS
+============================================ -->
+    <script src='{% static "js/wow.min.js" %}'></script>
+    <!-- price-slider JS
+============================================ -->
+    <script src='{% static "js/jquery-price-slider.js" %}'></script>
+    <!-- meanmenu JS
+============================================ -->
+    <script src='{% static "js/jquery.meanmenu.js" %}'></script>
+    <!-- owl.carousel JS
+============================================ -->
+    <script src='{% static "js/owl.carousel.min.js" %}'></script>
+    <!-- sticky JS
+============================================ -->
+    <script src='{% static "js/jquery.sticky.js" %}'></script>
+    <!-- scrollUp JS
+============================================ -->
+    <script src='{% static "js/jquery.scrollUp.min.js" %}'></script>
+    <!-- counterup JS
+============================================ -->
+    <script src='{% static "js/counterup/jquery.counterup.min.js" %}'></script>
+    <script src='{% static "js/counterup/waypoints.min.js" %}'></script>
+    <script src='{% static "js/counterup/counterup-active.js" %}'></script>
+    <!-- mCustomScrollbar JS
+============================================ -->
+    <script src='{% static "js/scrollbar/jquery.mCustomScrollbar.concat.min.js" %}'></script>
+    <script src='{% static "js/scrollbar/mCustomScrollbar-active.js" %}'></script>
+    <!-- metisMenu JS
+============================================ -->
+    <script src='{% static "js/metisMenu/metisMenu.min.js" %}'></script>
+    <script src='{% static "js/metisMenu/metisMenu-active.js" %}'></script>
+    <!-- morrisjs JS
+============================================ -->
+    <script src='{% static "js/morrisjs/raphael-min.js" %}'></script>
+    <script src='{% static "js/morrisjs/morris.js" %}'></script>
+    <script src='{% static "js/morrisjs/morris-active.js" %}'></script>
+    <!-- morrisjs JS
+============================================ -->
+    <script src='{% static "js/sparkline/jquery.sparkline.min.js" %}'></script>
+    <script src='{% static "js/sparkline/jquery.charts-sparkline.js" %}'></script>
+    <script src='{% static "js/sparkline/sparkline-active.js" %}'></script>
+    <!-- calendar JS
+============================================ -->
+    <script src='{% static "js/calendar/moment.min.js" %}'></script>
+    <script src='{% static "js/calendar/fullcalendar.min.js" %}'></script>
+    <script src='{% static "js/calendar/fullcalendar-active.js" %}'></script>
+    <!-- plugins JS
+============================================ -->
+    <script src='{% static "js/plugins.js" %}'></script>
+    <!-- main JS
+============================================ -->
+    <script src='{% static "js/main.js" %}'></script>
+    <!-- tawk chat JS
+============================================ -->
+</body>
+
+</html>

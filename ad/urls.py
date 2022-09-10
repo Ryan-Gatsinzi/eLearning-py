@@ -1,0 +1,43 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('',views.admin, name='admin'),
+    path('admin_add-student',views.add_student, name='add_student'),
+    path('admin_add-teacher',views.add_teacher, name='add_teacher'),
+    path('admin_all-students',views.all_students, name='all_student'),
+    path('admin_all-teachers',views.all_teachers, name='all_teachers'),
+    path('admin_department',views.admin_departments, name='admin_department'),
+    path('deactivate_student/<int:user_id>',views.deactivate_student, name='deactivate_student'),
+    path('activate_student/<int:user_id>',views.activate_student, name='activate_student'),
+    path('delete_student/<int:user_id>',views.Delete_student, name='delete_student'),
+    path('progress/<int:user_id>',views.progress_of_students, name='progress'),
+    path('deactivate_teacher/<int:user_id>',views.deactivate_teacher, name='deactivate_teacher'),
+    path('activate_teacher/<int:user_id>',views.activate_teacher, name='activate_teacher'),
+    path('delete_teacher/<int:user_id>',views.Delete_teacher, name='delete_teacher'),
+    path('deactivate_class/<int:class_id>',views.deactivate_class, name='deactivate_class'),
+    path('activate_class/<int:class_id>',views.activate_class, name='activate_class'),
+    path('delete_class/<int:class_id>',views.Delete_class, name='delete_class'),
+    path('students_class/<int:class_id>',views.students_class, name='students_class'),
+    path('go_to_edit/<int:ids>/<str:action>',views.go_to_edit, name='go_to_edit'),
+    path('edit-user/<int:user_id>/',views.edit_user, name='edit-user'),
+    path('edit-class/<int:class_id>/',views.edit_class, name='edit-class'),
+    path('admin_assign_student',views.assign_student, name='admin_assign_student'),
+    path('admin_edit_assign_student',views.edit_assign_student, name='edit_admin_assign_student'),
+    path('admin_classes/<str:actions>/',views.classses, name='admin_classes'),
+    path('promote/<int:class_id>/',views.promote, name='promote'),
+    path('demote/<int:class_id>/',views.demote, name='demote'),
+    path('repeat/<int:class_id>/',views.repeat, name='repeat'),
+    path('filter_records',views.Filter, name='filter_records'),
+    path('admin_waiting',views.waiting, name='admin_waiting'),
+    path('admin_add-course',views.add_course, name='admin_add-course'),
+    path('admin_all-courses',views.all_courses, name='admin_all-course'),
+    path('deactivate_subject/<int:subject_id>',views.deactivate_subject, name='deactivate_subject'),
+    path('activate_subject/<int:subject_id>',views.activate_subject, name='activate_subject'),
+    path('delete_subject/<int:subject_id>',views.Delete_subject, name='delete_subject'),
+    path('edit-subject/<int:subject_id>',views.edit_subject, name='edit-subject'),
+    path('profile',views.profile, name='profile'),
+    path('admin_logout',views.logout, name='admin_logout'),
+
+    
+]

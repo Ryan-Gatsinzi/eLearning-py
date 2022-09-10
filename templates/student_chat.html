@@ -1,0 +1,344 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 10px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .rightMsg{
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(17,17,209,1) 35%, rgba(0,245,255,0.7371323529411764) 100%);
+            animation: gradient 15s ease infinite;
+        }
+        .leftMsg{
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(143, 87, 145) 35%, rgba(102, 20, 84, 0.737) 100%);
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Chat</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}'>
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/owl.carousel.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.theme.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.transitions.css" %}'>
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/animate.css" %}'>
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/normalize.css" %}'>
+    <!-- meanmenu icon CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/meanmenu.min.css" %}'>
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/main.css" %}'>
+    <!-- educate icon CSS
+		============================================ -->
+    <!-- <link rel="stylesheet" href='{% static "css/educate-custon-icon.css" %}'> -->
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/morrisjs/morris.css" %}'>
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/scrollbar/jquery.mCustomScrollbar.min.css" %}'>
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/metisMenu/metisMenu.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/metisMenu/metisMenu-vertical.css" %}'>
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/calendar/fullcalendar.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/calendar/fullcalendar.print.min.css" %}'>
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/responsive.css" %}'>
+    <!-- modernizr JS
+		============================================ -->
+    <script src='{% static "js/vendor/modernizr-2.8.3.min.js" %}'></script>
+</head>
+
+
+
+<body>
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+    <!-- Start Left menu area -->
+    {% include './student_nav.html' %}
+    <!-- End Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div class="header-advance-area">
+            {% include './student_header.html' %}
+            <!-- Mobile Menu start -->
+            
+            <!-- Mobile Menu end -->
+            <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single pro tab review Start-->
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section"id="display" >
+                                            <div id="dropzone1" class="pro-ad coursepro">
+                                                <strong><h2>{{person.name}}</h2></strong>
+                                                <hr>                                                
+                                            <div class="modal-body" id="msgBody" style="height:400px; overflow-y: scroll; overflow-x: hidden;">
+                                            
+                                            </div>
+                                            <div class="modal-footer">
+                                                <textarea name="message" id="message" class="form-control" syle="height:70px;width:10%;" placeholder="Type message here"></textarea>
+                                                <button id="send" class="btn btn-primary" value="{{person.id}}"  onclick="send(this.value);" style="height:70%;">send</button>                                                    
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="footer-copyright-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer-copy-right">
+                            <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!-- jquery
+		============================================ -->
+        <script src='{% static "js/vendor/jquery-1.12.4.min.js" %}'></script>
+        <!-- bootstrap JS
+    ============================================ -->
+        <script src='{% static "js/bootstrap.min.js" %}'></script>
+        <!-- wow JS
+    ============================================ -->
+        <script src='{% static "js/wow.min.js" %}'></script>
+        <!-- price-slider JS
+    ============================================ -->
+        <script src='{% static "js/jquery-price-slider.js" %}'></script>
+        <!-- meanmenu JS
+    ============================================ -->
+        <script src='{% static "js/jquery.meanmenu.js" %}'></script>
+        <!-- owl.carousel JS
+    ============================================ -->
+        <script src='{% static "js/owl.carousel.min.js" %}'></script>
+        <!-- sticky JS
+    ============================================ -->
+        <script src='{% static "js/jquery.sticky.js" %}'></script>
+        <!-- scrollUp JS
+    ============================================ -->
+        <script src='{% static "js/jquery.scrollUp.min.js" %}'></script>
+        <!-- counterup JS
+    ============================================ -->
+        <script src='{% static "js/counterup/jquery.counterup.min.js" %}'></script>
+        <script src='{% static "js/counterup/waypoints.min.js" %}'></script>
+        <script src='{% static "js/counterup/counterup-active.js" %}'></script>
+        <!-- mCustomScrollbar JS
+    ============================================ -->
+        <script src='{% static "js/scrollbar/jquery.mCustomScrollbar.concat.min.js" %}'></script>
+        <script src='{% static "js/scrollbar/mCustomScrollbar-active.js" %}'></script>
+        <!-- metisMenu JS
+    ============================================ -->
+        <script src='{% static "js/metisMenu/metisMenu.min.js" %}'></script>
+        <script src='{% static "js/metisMenu/metisMenu-active.js" %}'></script>
+        <!-- morrisjs JS
+    ============================================ -->
+        <script src='{% static "js/morrisjs/raphael-min.js" %}'></script>
+        <script src='{% static "js/morrisjs/morris.js" %}'></script>
+        <script src='{% static "js/morrisjs/morris-active.js" %}'></script>
+        <!-- morrisjs JS
+    ============================================ -->
+        <script src='{% static "js/sparkline/jquery.sparkline.min.js" %}'></script>
+        <script src='{% static "js/sparkline/jquery.charts-sparkline.js" %}'></script>
+        <script src='{% static "js/sparkline/sparkline-active.js" %}'></script>
+        <!-- calendar JS
+    ============================================ -->
+        <script src='{% static "js/calendar/moment.min.js" %}'></script>
+        <script src='{% static "js/calendar/fullcalendar.min.js" %}'></script>
+        <script src='{% static "js/calendar/fullcalendar-active.js" %}'></script>
+        <!-- plugins JS
+    ============================================ -->
+        <script src='{% static "js/plugins.js" %}'></script>
+        <!-- main JS
+    ============================================ -->
+        <script src='{% static "js/main.js" %}'></script>
+        <!-- tawk chat JS
+    ============================================ -->
+    <script>                        
+            display();            
+            function display(){           
+                const id = parseInt("{{person.id}}");
+                setInterval(function(){
+                    $.ajax({
+                        url: "/student_dashboard/student_displayMessage/",
+                        type:"POST",
+                        cache:false,
+                        data:{ 
+                            'user_id':id,
+                            'csrfmiddlewaretoken': '{{csrf_token}}',
+                        },
+                        success: function(response){        
+                            /*let res = JSON.parse(chat)
+                            res.forEach((el)=>{
+                                document.querySelector('#msgBody').innerHTML += el;
+                            }); */ 
+                            $("#msgBody").empty();                          
+                            for (var key in response)
+                            {
+                                console.log(response[key])
+                                $("#msgBody").append(response[key]);
+                            }            
+                                //document.querySelector('#msgBody').innerHTML = chat;                                                                                                                        
+                                        
+                        }                     
+                });
+                },1000);           
+        }    
+   
+
+    const btn = document.querySelector('#send');
+    function send(id){
+        const message = document.querySelector('#message').value;                                       
+        if(message != ''){   
+            $.ajax({
+            url: "/student_dashboard/student_sendMessage/",
+            type:"POST",
+            cache:false,
+            data:{ 
+                message,
+                id,
+                'csrfmiddlewaretoken': '{{csrf_token}}',
+              },
+            success: function(){                
+              document.querySelector('#message').innerHTML = '';                                      
+            }                     
+            });             
+        }
+    }
+
+    function delete_msg(id){
+    $.ajax({
+        url:"/student_dashboard/student_deleteMessage/",
+        type:'POST',
+        cache:false,
+        data:{
+          id,
+          'csrfmiddlewaretoken':'{{csrf_token}}',
+          },
+        success: function(){
+            console.log(id);
+            display()         
+                        
+        }
+    });
+}
+</script>
+
+</body>
+
+</html>

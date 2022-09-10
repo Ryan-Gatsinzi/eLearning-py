@@ -1,0 +1,94 @@
+{% load static %}
+<div class="left-sidebar-pro">
+    <nav id="sidebar" class="">
+        <div class="sidebar-header">
+            <a href="/admin_dashboard/"><img class="main-logo" src="{% static 'img/logo/logo.png' %}" alt="img" width = '200px' height='10px'/></a>
+            <strong><a href="#"><img src="{% static 'img/logo/logo.png' %}" alt="" /></a></strong>
+        </div>
+        <div class="left-custom-menu-adp-wrap comment-scrollbar">
+            <nav class="sidebar-nav left-sidebar-menu-pro">
+                <ul class="metismenu" id="menu1">
+                    <li class="active">
+                    <a class="has-arrow"  aria-expanded="false"><span class="{% static 'educate-icon educate-course icon-wrap'"></span> <span class="mini-click-non">Teachers</span></a>                            <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Teachers" href="/admin_dashboard/admin_all-teachers"><span class="mini-sub-pro">All Teachers</span></a></li>
+                            <li><a title="Add Teacher" href="/admin_dashboard/admin_add-teacher"><span class="mini-sub-pro">Add Teacher</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow"  aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Students</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All Students" href="/admin_dashboard/admin_all-students"><span class="mini-sub-pro">All Students</span></a></li>
+                            <li><a title="Add Students" href="/admin_dashboard/admin_add-student"><span class="mini-sub-pro">Add Student</span></a></li>
+                            <li><a title="Assign students" href="/admin_dashboard/admin_assign_student"><span class="mini-sub-pro">Assign student</span></a></li>
+                            <li><a title="Edit assign students" href="/admin_dashboard/admin_edit_assign_student"><span class="mini-sub-pro">Edit assigned student</span></a></li>
+                            <li><a title="Promote students" href="/admin_dashboard/admin_classes/promote/"><span class="mini-sub-pro">Promote students</span></a>
+                            <li><a title="Demote students" href="/admin_dashboard/admin_classes/demote/"><span class="mini-sub-pro">demote students</span></a>
+                        </li>                                   
+                        <li><a title="Repeat students" href="/admin_dashboard/admin_classes/repeat/"><span class="mini-sub-pro">Repeat students</span></a>
+                        </li>                                                    
+                        
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow"  aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Subjects</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="All subjects" href="/admin_dashboard/admin_all-courses"><span class="mini-sub-pro">All Subjects</span></a></li>
+                            <li><a title="Add subjects" href="/admin_dashboard/admin_add-course"><span class="mini-sub-pro">Add Subjects</span></a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                            <li><a title="Departments List" href="/admin_dashboard/admin_department"><span class="mini-sub-pro">Class List</span></a></li>                                
+                    </li>                                       
+                </ul>
+            </nav>
+        </div>
+    </nav>
+</div>
+
+<div class="mobile-menu-area">        
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="mobile-menu">
+                            <nav id="dropdown">
+                                <ul class="mobile-menu-nav">
+                                    <li><a data-toggle="collap#Charts" href="/admin_dashboard//admin_dashboard">Home <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>                                            
+                                    </li>
+                                    <li><a data-toggle="collap#demoevent" href="#">Teachers <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <ul id="demoevent" class="collapse dropdown-header-top">
+                                        <li><a title="All Teachers" href="/admin_dashboard/admin_all-teachers"><span class="mini-sub-pro">All Teachers</span></a></li>
+                                        <li><a title="Add Professor" href="/admin_dashboard/admin_add-teacher"><span class="mini-sub-pro">Add Teacher</span></a></li>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a data-toggle="collap#demopro" href="#">Students <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <ul id="demopro" class="collapse dropdown-header-top">
+                                        <li><a title="All Students" href="/admin_dashboard/admin_all-students"><span class="mini-sub-pro">All Students</span></a></li>
+                            <li><a title="Add Students" href="/admin_dashboard/admin_add-student"><span class="mini-sub-pro">Add Student</span></a></li>
+                            <li><a title="Assign students" href="/admin_dashboard/admin_assign_student"><span class="mini-sub-pro">Assign student</span></a></li>
+                            <!-- <li><a title="Edit assigned student" href="/admin_dashboard/admin_change_assigned_students"><span class="mini-sub-pro">Edit assigned students</span></a></li>                                   -->
+                            <li><a title="Promote students" href="/admin_dashboard/admin_classes/promote/"><span class="mini-sub-pro">Promote students</span></a>
+                            <li><a title="Demote students" href="/admin_dashboard/admin_classes/demote/"><span class="mini-sub-pro">demote students</span></a>
+                        </li>                                   
+                        <li><a title="Repeat students" href="/admin_dashboard/admin_classes/repeat/"><span class="mini-sub-pro">Repeat students</span></a>
+                        </li> 
+                                        </ul>
+                                    </li>
+                                    <li><a data-toggle="collap#democrou" href="#">Subjects <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <ul id="democrou" class="collapse dropdown-header-top">
+                                        <li><a title="All subjects" href="/admin_dashboard/admin_all-courses"><span class="mini-sub-pro">All Subjects</span></a></li>
+                            <li><a title="Add subjects" href="/admin_dashboard/admin_add-course"><span class="mini-sub-pro">Add Subjects</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a title="Promoted,demoted and repeated" href="/admin_dashboard/admin_classes/records/"><span class="mini-sub-pro">Records</span></a></li>
+                                    <li><a title="Waiting List" href="/admin_dashboard/admin_waiting"><span class="mini-sub-pro">Waiting</span></a></li> 
+                                    <!-- <li class="nav-item"><a href="/admin_dashboard/admin_all-results" class="nav-link">All student quiz results</a>
+                                            </li>                                        -->
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

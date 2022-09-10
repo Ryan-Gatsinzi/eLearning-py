@@ -1,0 +1,316 @@
+<!-- <?php
+include("../config/db_connect.php");
+session_start();
+if (!isset($_SESSION['is_loggedin'])) {
+    header('location:../../index.php?msg=pleaseLogin');
+    return;
+}
+if (isset($_POST['logout'])) {
+    // remove all session variables
+    session_unset();
+    // destroy the session
+    session_destroy();
+    header('location:../../index.php?msg=logged-out');
+    return;
+}
+if (isset($_POST['submit_assingment'])) {
+    $course_name = mysqli_real_escape_string($conn, $_POST['coursename']);
+    $department = mysqli_real_escape_string($conn, $_POST['department']);
+    $professor = mysqli_real_escape_string($conn, $_POST['teacher']);
+    if(empty($course_name) || empty($department) || empty($professor)){
+      header("Location:add-course.php?msg=checkYourInputs");
+      return;
+    }    
+    $check = $conn->query("SELECT * from class where name = '$course_name' and  depid = $department and teacher='$professor' and status = activated");
+    if($check->num_rows > 0){
+      header("Location:add-course.php?msg=courseAlreadyExists");
+    }
+    $sql = $conn->query("INSERT INTO class(name,depid,teacher) VALUES('$course_name', '$department','$professor')");
+    if ($sql) {
+        header('location:add-course.php?msg=Success');
+    } else {
+        header('location:add-course.php?msg=Failure');
+    }
+}
+
+?> -->
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 10px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add subject</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/font-awesome.min.css" %}'>
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/owl.carousel.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.theme.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.transitions.css" %}'>
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/animate.css" %}'>
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/normalize.css" %}'>
+    <!-- meanmenu icon CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/meanmenu.min.css" %}'>
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/main.css" %}'>
+    <!-- educate icon CSS
+		============================================ -->
+    <!-- <link rel="stylesheet" href='{% static "css/educate-custon-icon.css" %}'> -->
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/morrisjs/morris.css" %}'>
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/scrollbar/jquery.mCustomScrollbar.min.css" %}'>
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/metisMenu/metisMenu.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/metisMenu/metisMenu-vertical.css" %}'>
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/calendar/fullcalendar.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/calendar/fullcalendar.print.min.css" %}'>
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href='{% static "css/responsive.css" %}'>
+    <!-- modernizr JS
+		============================================ -->
+    <script src='{% static "js/vendor/modernizr-2.8.3.min.js" %}'></script>
+</head>
+
+
+<body>
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+    <!-- Start Left menu area -->
+    {% include "./admin_header.html" %}
+    <!-- Start Left menu area -->
+    <div class="all-content-wrapper">
+        {% include "./admin_nav.html" %}
+        <!-- Single pro tab review Start-->
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad coursepro">
+                                                    {% for msg in messages %}
+                                                    <div style="color:red;font-size:larger;">{{msg}}</div>                                
+                                                    {% endfor %}
+                                                    <form action="/admin_dashboard/admin_add-course" class="dropzone dropzone-custom needsclick course" id="demo1-upload" method="post">
+                                                        {% csrf_token %}
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <label for="coursename">Subject name</label>
+                                                                <div class="form-group">
+                                                                    <input name="subjectname" type="text" class="form-control" placeholder="Subject Name">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group res-mg-t-15">
+                                                                        <div class="form-group">
+                                                                            <label for="class">Class:</label>
+                                                                            <select name="class" class="form-control">
+                                                                                <option selected disabled value="0">---Select class---</option> 
+                                                                                {% for cls in class %}                                                                           
+                                                                                <option name="{{cls.name_class}}" value="{{cls.id}}"> {{cls.name_class}}</option> 
+                                                                                {% endfor %}                                                                                   
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group res-mg-t-15">
+                                                                        <div class="form-group">
+                                                                            <label for="teacher">Teacher:</label>
+                                                                            <select name="teacher" class="form-control">
+                                                                                <option selected disabled value="0">---Select teacher---</option>
+                                                                                {% for teacher in teachers %}                                                                                
+                                                                                        <option name="{{teacher.name}}" value="{{teacher.id}}"> {{teacher.name}} </option>
+                                                                                {% endfor %}                                                                                
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="payment-adress">
+                                                                        <button type="submit" name="submit_assingment" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                    </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="product-tab-list tab-pane fade" id="INFORMATION">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer-copy-right">
+                            <p>Copyright © 2018. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery
+		============================================ -->
+    <script src='{% static "js/vendor/jquery-1.12.4.min.js" %}'></script>
+    <!-- bootstrap JS
+============================================ -->
+    <script src='{% static "js/bootstrap.min.js" %}'></script>
+    <!-- wow JS
+============================================ -->
+    <script src='{% static "js/wow.min.js" %}'></script>
+    <!-- price-slider JS
+============================================ -->
+    <script src='{% static "js/jquery-price-slider.js" %}'></script>
+    <!-- meanmenu JS
+============================================ -->
+    <script src='{% static "js/jquery.meanmenu.js" %}'></script>
+    <!-- owl.carousel JS
+============================================ -->
+    <script src='{% static "js/owl.carousel.min.js" %}'></script>
+    <!-- sticky JS
+============================================ -->
+    <script src='{% static "js/jquery.sticky.js" %}'></script>
+    <!-- scrollUp JS
+============================================ -->
+    <script src='{% static "js/jquery.scrollUp.min.js" %}'></script>
+    <!-- counterup JS
+============================================ -->
+    <script src='{% static "js/counterup/jquery.counterup.min.js" %}'></script>
+    <script src='{% static "js/counterup/waypoints.min.js" %}'></script>
+    <script src='{% static "js/counterup/counterup-active.js" %}'></script>
+    <!-- mCustomScrollbar JS
+============================================ -->
+    <script src='{% static "js/scrollbar/jquery.mCustomScrollbar.concat.min.js" %}'></script>
+    <script src='{% static "js/scrollbar/mCustomScrollbar-active.js" %}'></script>
+    <!-- metisMenu JS
+============================================ -->
+    <script src='{% static "js/metisMenu/metisMenu.min.js" %}'></script>
+    <script src='{% static "js/metisMenu/metisMenu-active.js" %}'></script>
+    <!-- morrisjs JS
+============================================ -->
+    <script src='{% static "js/morrisjs/raphael-min.js" %}'></script>
+    <script src='{% static "js/morrisjs/morris.js" %}'></script>
+    <script src='{% static "js/morrisjs/morris-active.js" %}'></script>
+    <!-- morrisjs JS
+============================================ -->
+    <script src='{% static "js/sparkline/jquery.sparkline.min.js" %}'></script>
+    <script src='{% static "js/sparkline/jquery.charts-sparkline.js" %}'></script>
+    <script src='{% static "js/sparkline/sparkline-active.js" %}'></script>
+    <!-- calendar JS
+============================================ -->
+    <script src='{% static "js/calendar/moment.min.js" %}'></script>
+    <script src='{% static "js/calendar/fullcalendar.min.js" %}'></script>
+    <script src='{% static "js/calendar/fullcalendar-active.js" %}'></script>
+    <!-- plugins JS
+============================================ -->
+    <script src='{% static "js/plugins.js" %}'></script>
+    <!-- main JS
+============================================ -->
+    <script src='{% static "js/main.js" %}'></script>
+    <!-- tawk chat JS
+============================================ -->
+    </body>
+
+</html>
